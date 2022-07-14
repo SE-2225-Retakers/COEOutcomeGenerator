@@ -52,5 +52,8 @@
   "bugs": {
     "url": "https://github.com/SE-2225-Retakers/COEOutcomeGenerator/issues"
   },
-  "homepage": "https://github.com/SE-2225-Retakers/COEOutcomeGenerator#readme"
+  "homepage": "https://github.com/SE-2225-Retakers/COEOutcomeGenerator#readme",
+  "overrides": {
+    "autoprefixer": "10.4.5"
+  }
 }
