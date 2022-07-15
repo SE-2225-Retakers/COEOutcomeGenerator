@@ -1,27 +1,25 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 import { Form, Container } from 'react-bootstrap';
+import { auth } from '../firebase-config.js';
+import {  GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 
 function LoginForm() {
+    const signInWithGoogle = () => {
+        const provider = new GoogleAuthProvider();
+        signInWithPopup(auth, provider)
+        .then((result) => {
+          console.log(result);
+        }).catch((error) => {
+          console.log(error);
+        });
+      }
     return (
-        <div className="card-body">
-        {/* <div className="form-floating mb-3">
-            <input type="email" className="form-control" id="floatingInput" placeholder="name@example.com" name='acc_email' />
-            <label for="floatingInput">Email address</label>
-        </div>
-        <div className="form-floating">
-            <input type="password" className="form-control" id="floatingPassword" placeholder="Password" name='acc_password' />
-            <label for="floatingPassword">Password</label>
-        </div > */}
-        <div className="text-center">
-            <button className="btn btn-primary text-right mt-4" >
-                Log In With Google
-            </button>
-        </div>
-        <p className="text-center mt-4">
-            <Link to="/signup" class="active">Create</Link>
-        </p>
-    </div>
+        <Container>
+        <button onClick={signInWithGoogle}>
+            log In With Google
+        </button>
+        </Container>
     )
 
 }

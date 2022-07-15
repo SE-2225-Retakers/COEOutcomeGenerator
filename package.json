@@ -53,7 +53,7 @@
   "bugs": {
     "url": "https://github.com/SE-2225-Retakers/COEOutcomeGenerator/issues"
   },
-  "homepage": "/home",
+  "homepage": "/",
   "overrides": {
     "autoprefixer": "10.4.5"
   }
