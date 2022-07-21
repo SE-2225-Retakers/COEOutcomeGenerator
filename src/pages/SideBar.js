@@ -24,40 +24,36 @@ import "./sidebar.css"
 import { Container, Row } from "react-bootstrap";
 import { UserProvider } from "../context/AuthContext";
 import UserNameComponent from "../component/UserNameComponent"
+import LogOut from "../component/LogOutComponent";
+
 
 const Sidebar = () => {
     return (
-        <>
-            <div id="sidebar">
-                <ProSidebar>
-                    <SidebarContent>
-                        <Menu iconShape="square">
-                            <Container>
-                                <Row className="justify-content-center">
-                                    <img alt="..." src={profileIcon} style={{ maxWidth: '150px' }}></img>
-                                </Row>
-                                <Row className="justify-content-center">
-                                    <UserProvider>
-                                        <UserNameComponent />
-                                    </UserProvider>
-                                </Row>
-                            </Container>
-                            <MenuItem icon={<FiHome />}>
-                                Home
-                            </MenuItem>
-                            <MenuItem icon={<FiBookOpen />}>Individual PO Forms</MenuItem>
-                            <MenuItem icon={<FiBook />}>Class PO Forms</MenuItem>
+        <div id="sidebar">
+            <ProSidebar>
+                <SidebarContent>
+                    <Menu iconShape="square">
+                        <Container>
+                            <Row className="justify-content-center">
+                                <img alt="..." src={profileIcon} style={{ maxWidth: '150px' }}></img>
+                            </Row>
+                            <Row className="justify-content-center">
+                                <UserNameComponent />
+                            </Row>
+                        </Container>
+                        <MenuItem icon={<FiHome />}>
+                            Home
+                        </MenuItem>
+                        <MenuItem icon={<FiBookOpen />}>Individual PO Forms</MenuItem>
+                        <MenuItem icon={<FiBook />}>Class PO Forms</MenuItem>
 
-                        </Menu>
-                    </SidebarContent>
-                    <SidebarFooter>
-                        <Menu iconShape="square">
-                            <MenuItem icon={<FiLogOut />}>Logout</MenuItem>
-                        </Menu>
-                    </SidebarFooter>
-                </ProSidebar>
-            </div>
-        </>
+                    </Menu>
+                </SidebarContent>
+                <SidebarFooter>
+                    <LogOut />
+                </SidebarFooter>
+            </ProSidebar>
+        </div>
     );
 };
 

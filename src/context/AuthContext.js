@@ -1,19 +1,25 @@
+import { signOut } from "firebase/auth";
 import React, { useContext } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../firebase-config";
 
 export const UserContext = React.createContext();
 
-export function useUser() {
-    return useContext(UserContext)
-}
-
 export function UserProvider({ children }) {
-    const [ user, loading, error] = useAuthState(auth);
+    const [ user ] = useAuthState(auth);
+    const canvasToken = undefined;
+
+    const logOut = async () => {
+        await signOut(auth);
+    }
 
     return (
-        <UserContext.Provider value={ user }>
+        <UserContext.Provider value={{user, logOut, canvasToken}}>
           { children }
         </UserContext.Provider>
     )
 }
+
+export function UserAuth() {
+    return useContext(UserContext)
+};

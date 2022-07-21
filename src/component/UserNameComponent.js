@@ -1,8 +1,7 @@
 import React from "react";
-import { useUser } from '../context/AuthContext';
-
+import { UserAuth } from '../context/AuthContext';
 
 export default function UserNameComponent() {
-    const value = useUser();
-    return <h4>{value.displayName}</h4>;
+    const { user } = UserAuth();
+    return <h4>{user ? user.displayName : 'User'}</h4>;
 }
