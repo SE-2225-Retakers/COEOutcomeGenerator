@@ -22,9 +22,10 @@ import profileIcon from "../images/ProfileIcon.png"
 import "react-pro-sidebar/dist/css/styles.css";
 import "./sidebar.css"
 import { Container, Row } from "react-bootstrap";
+import { UserProvider } from "../context/AuthContext";
+import UserNameComponent from "../component/UserNameComponent"
 
 const Sidebar = () => {
-
     return (
         <>
             <div id="sidebar">
@@ -36,7 +37,9 @@ const Sidebar = () => {
                                     <img alt="..." src={profileIcon} style={{ maxWidth: '150px' }}></img>
                                 </Row>
                                 <Row className="justify-content-center">
-                                    <h4>Dominic C. Bernas</h4>
+                                    <UserProvider>
+                                        <UserNameComponent />
+                                    </UserProvider>
                                 </Row>
                             </Container>
                             <MenuItem icon={<FiHome />}>
