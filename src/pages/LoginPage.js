@@ -32,12 +32,8 @@ export default function LoginPage() {
                 <img src={logo} className="logo" alt='...'/>
                 <form className="form" >
                     <div className="input-group">
-                        <label htmlFor="email">Email</label>
-                        <input type="email" name="email" placeholder="nome@email.com.br" />
-                    </div>
-                    <div className="input-group">
-                        <label htmlFor="password">Password</label>
-                        <input type="password" name="password" />
+                        <label htmlFor="email">Enter access token</label>
+                        <input type="email" name="email" placeholder="Enter token" />
                     </div>
                     <LoginForm />
                 </form>
