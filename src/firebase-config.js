@@ -14,19 +14,31 @@ const firebaseConfig = {
     measurementId: "G-P9KPHEKN13"
   };
 
-export const googleProvider = new GoogleAuthProvider();
+
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 
 const db = getFirestore(app);
 export const auth = getAuth(app);
-
+export let currentUser = undefined;
 
 export const signInWithGoogle = async () => {
-  try {
-    const result = await signInWithPopup(auth, googleProvider);
-    return result;
-  } catch (err) {
-    console.error(err);
-  }
+  const googleProvider = new GoogleAuthProvider();
+  const result = await signInWithPopup(auth, googleProvider)
+  .then((result) => {
+      const user = result.user;
+      return user;
+  }).catch((error) => {
+    // Handle Errors here.
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    // The email of the user's account used.
+    const email = error.customData.email;
+    // The AuthCredential type that was used.
+    const credential = GoogleAuthProvider.credentialFromError(error);
+    // ...
+  });
+
+  currentUser = result;
+  return;
 }
