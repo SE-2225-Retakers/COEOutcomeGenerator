@@ -9,7 +9,7 @@ export default function Signin() {
 
     useEffect(() => {
         if (user) {
-            navigate('/home');
+            navigate('/loginToken');
             console.log("Welcome: " + user.user.displayName);
         }
         if (error) {
@@ -36,4 +36,3 @@ export default function Signin() {
     </div>
     )
 };
-
