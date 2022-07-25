@@ -21,11 +21,12 @@ body {
 
 .backgroundImage{
     min-height: 100%;
-    min-width: 60%;
+    min-width: 100%;
     background-image: url('../images/BackgroundImage.jpg');
 }
 
 .main {
+    display: block;
     background: #fff;
     border-radius: 4px;
     box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.2);
@@ -34,7 +35,6 @@ body {
     padding-bottom: 30px;
     text-align: center;
     width: 90%;
-    margin-left: 350px;
 }
 
 .main>.logo {
