@@ -3,7 +3,7 @@ import fs from 'fs';
 
 //UOM Points of PDF
 
-
+//this represents the locations and details needed for 
 function assessmentConstantForms( width, height,  font) {
   this.studentName = {
     x: 200,
@@ -68,6 +68,10 @@ function assessmentConstantForms( width, height,  font) {
     font: font,
   };
 };
+
+async function generatePDF(props, template) {
+  
+}
 
 
 export async function modifyPdf() {

@@ -11,8 +11,8 @@ export default function InputTokenForm() {
 
     useEffect(() => {
         if (!user) {
-            nav('/')
-            console.log('Not Logged In!')
+            nav('/');
+            console.log('Not Logged In!');
         }
         if (canvasToken) {
             nav('/home');
