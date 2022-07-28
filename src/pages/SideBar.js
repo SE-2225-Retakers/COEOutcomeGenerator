@@ -16,7 +16,7 @@ import {
     FiBook
 } from "react-icons/fi";
 
-import profileIcon from "../images/ProfileIcon.png"
+
 
 
 import "react-pro-sidebar/dist/css/styles.css";
@@ -25,6 +25,7 @@ import { Container, Row } from "react-bootstrap";
 import { UserProvider } from "../context/AuthContext";
 import UserNameComponent from "../component/UserNameComponent"
 import LogOut from "../component/LogOutComponent";
+import UserPicture from "../component/UserPictureComponent";
 
 
 const Sidebar = () => {
@@ -34,12 +35,8 @@ const Sidebar = () => {
                 <SidebarContent>
                     <Menu iconShape="square">
                         <Container>
-                            <Row className="justify-content-center">
-                                <img alt="..." src={profileIcon} style={{ maxWidth: '150px' }}></img>
-                            </Row>
-                            <Row className="justify-content-center">
-                                <UserNameComponent />
-                            </Row>
+                            <UserPicture />
+                            <UserNameComponent />
                         </Container>
                         <MenuItem icon={<FiHome />}>
                             Home

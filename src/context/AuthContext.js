@@ -15,7 +15,7 @@ export function UserProvider({ children }) {
     }
 
     const loginWithGoogle = async () => {
-        await signInWithGoogle()
+        await signInWithGoogle();
     }
 
     return (
