@@ -1,12 +1,14 @@
 import React from "react";
 import { Row } from "react-bootstrap";
 import { UserAuth } from '../context/AuthContext';
+import profileIcon from "../images/ProfileIcon.png"
 
-export default function UserNameComponent() {
+export default function UserPicture() {
     const { user } = UserAuth();
+
     return (
         <Row className="justify-content-center">
-            <h4>{user ? user.displayName : 'User'}</h4>
+            <img alt={profileIcon} src={user.photoURL} style={{ maxWidth: '150px' }}></img>
         </Row>
     );
 }

@@ -6,10 +6,14 @@ import { useNavigate } from 'react-router-dom';
 
 
 export default function InputTokenForm() {
-    const { canvasToken } = UserAuth();
+    const { user, canvasToken } = UserAuth();
     const nav = useNavigate();
 
     useEffect(() => {
+        if (!user) {
+            nav('/');
+            console.log('Not Logged In!');
+        }
         if (canvasToken) {
             nav('/home');
             console.log('User has Canvas Token!')

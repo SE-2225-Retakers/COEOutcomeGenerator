@@ -12,19 +12,13 @@ import {
 } from "react-icons/fi";
 
 export default function LogOut() {
-    const { user, logOut } = UserAuth();
-
+    const { logOut } = UserAuth();
     const navigate = useNavigate();
 
-    const handleLogOut = () => {
-        logOut();
+    const handleLogOut = async () => {
+        await logOut();
+        navigate('/');
     }
-
-    useEffect(() => {
-        if (!user) {
-            navigate('/');
-        }
-    });
 
     return (
         <Menu iconShape="square" onClick={handleLogOut}>
