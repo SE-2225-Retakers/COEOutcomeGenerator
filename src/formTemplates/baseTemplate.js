@@ -69,16 +69,37 @@ function assessmentFormProps( width, height,  font) {
   };
 };
 
-function assessmentInputProps() {
-  this.studentName = 'Juan Dela Cruz';
-  this.courseYear = 'BSSE-2';
-  this.subjectCodeDesc = 'se-2225';
-  this.semester = '2nd semester';
-  this.schoolYear = '2021-2022';
-  this.assessmentTask = 'Project';
-  this.assessmentDate = (new Date(Date.now())).toISOString().substring(0, 10);
-  this.assessmentRating = '70';
-  this.assessmentRemark = 'Passed';
+class AssessmentInput {
+  studentName = 'Juan Dela Cruz';
+  courseYear = 'BSSE-2';
+  subjectCodeDesc = 'se-2225';
+  semester = '2nd semester';
+  schoolYear = '2021-2022';
+  assessmentTask = 'Project';
+  assessmentDate = (new Date(Date.now())).toISOString().substring(0, 10);
+  assessmentRating = '70';
+  assessmentRemark = 'Passed';
+
+  static Builder = class {
+    studentName;
+    courseYear;
+    subjectCodeDesc;
+    semester;
+    schoolYear;
+    assessmentTask;
+    assessmentDate = (new Date(Date.now())).toISOString().substring(0, 10);
+    assessmentRating;
+    assessmentRemark;
+
+    set setStudentName(input) {
+      this.studentName = input;
+      return this
+    }
+  }
+
+  constructor() {
+    this.studentName = 
+  }
 }
 
 class Template {
