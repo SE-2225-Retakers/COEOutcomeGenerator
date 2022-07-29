@@ -12,7 +12,7 @@ function App() {
     <div>
       <UserProvider>
         <Routes>
-          <Route path='/' element={<HomePage />} />
+          <Route path='/' element={<Signin/>} />
           <Route path='/loginToken' element={<LogInContainer />} />
           <Route path='/home' element={<HomePage />} />
         </Routes>
