@@ -3,8 +3,8 @@ import fs from 'fs';
 
 //UOM Points of PDF
 
-//this represents the locations and details needed for 
-function assessmentConstantForms( width, height,  font) {
+//this represents the locations and details needed for generating
+function assessmentFormProps( width, height,  font) {
   this.studentName = {
     x: 200,
     y: height - 276,
@@ -69,34 +69,66 @@ function assessmentConstantForms( width, height,  font) {
   };
 };
 
-async function generatePDF(props, template) {
+function assessmentInputProps() {
+  this.studentName = 'Juan Dela Cruz';
+  this.courseYear = 'BSSE-2';
+  this.subjectCodeDesc = 'se-2225';
+  this.semester = '2nd semester';
+  this.schoolYear = '2021-2022';
+  this.assessmentTask = 'Project';
+  this.assessmentDate = (new Date(Date.now())).toISOString().substring(0, 10);
+  this.assessmentRating = '70';
+  this.assessmentRemark = 'Passed';
+}
+
+class Template {
+  filePath;
+  pages;
+  font;
+  pdfBytes;
+  pdfDoc;
+  firstPage;
+  width;
+  height;
+  formProps;
+  inputProps;
+
+  constructor(filePath) {
+    this.filePath = filePath;
+    this.existingPdfBytes = fs.readFileSync(this.filePath);
+  }
+
+  async init() {
+    this.pdfDoc = await PDFDocument.load(this.existingPdfBytes);
+    this.pages = this.pdfDoc.getPages();
+    this.firstPage = this.pages[0];
+    const { width, height } = this.firstPage.getSize();
+    this.font = await this.pdfDoc.embedFont(StandardFonts.Helvetica);
+    this.formProps = new assessmentFormProps( width, height, this.font );
+    this.inputProps = new assessmentInputProps();
+  }
   
+  
+  async generateFirstPageInputs() {
+    const formKeys = Object.keys(this.formProps);
+    const inputsKeys = Object.keys(this.inputProps)
+    for (let i = 0; i < 9; i++) {
+      this.firstPage.drawText( this.inputProps[inputsKeys[i]] , this.formProps[formKeys[i]] );
+    }
+    this.pdfBytes = await this.pdfDoc.save();
+  }
+
+  get pdfBytes() {
+    return this.pdfBytes;
+  }
 }
 
 
+
+
 export async function modifyPdf() {
-  const filePath = './documents/OBE-FORM-05-INDIVIDUAL-PROGRAM-OUTCOME-ASSESSMENT-SE.pdf'
-  const existingPdfBytes = fs.readFileSync(filePath);
-
-  const pdfDoc = await PDFDocument.load(existingPdfBytes);
-  
-  const pages = pdfDoc.getPages();
-  const firstPage = pages[0];
-  const { width, height } = firstPage.getSize();
-  const helveticaFont = await pdfDoc.embedFont(StandardFonts.Helvetica);
-
-  const assessmentConstantForm = new assessmentConstantForms( width, height, helveticaFont );
-
-  firstPage.drawText('Juan Dela Cruz', assessmentConstantForm.studentName);
-  firstPage.drawText('BSSE-2', assessmentConstantForm.courseYear);
-  firstPage.drawText('SE-2225 - Project Management', assessmentConstantForm.subjectCodeDesc);
-  firstPage.drawText('2nd Semester', assessmentConstantForm.semester);
-  firstPage.drawText('2022', assessmentConstantForm.schoolYear);
-  firstPage.drawText('PROJECT', assessmentConstantForm.assessmentTask);
-  firstPage.drawText('07/28/2022', assessmentConstantForm.assessmentDate);
-  firstPage.drawText('70', assessmentConstantForm.assessmentRating);
-  firstPage.drawText('Passed', assessmentConstantForm.assessmentRemark);
-
-  const pdfBytes = await pdfDoc.save();
-  return pdfBytes;
+  const example = new Template('./documents/po-form-5-se.pdf');
+  await example.init();
+  await example.generateFirstPageInputs();
+  return example.pdfBytes;
 }
