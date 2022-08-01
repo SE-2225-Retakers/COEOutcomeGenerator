@@ -7,12 +7,16 @@ import { UserAuth } from '../context/AuthContext';
 
 
 export function HomePage() {
-    const { user } = UserAuth();
+    const { user, canvasToken } = UserAuth();
     const nav = useNavigate();
 
     useEffect(() => {
-        if (user) {
+        if (!user) {
             nav('/');
+            console.log('Not Logged In!');
+        }
+        if (!canvasToken && user) {
+            nav('/inputToken');
             console.log('Not Logged In!');
         }
     });

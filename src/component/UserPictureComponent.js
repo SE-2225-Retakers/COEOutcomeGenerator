@@ -8,7 +8,7 @@ export default function UserPicture() {
 
     return (
         <Row className="justify-content-center">
-            <img alt={profileIcon} src={user.photoURL} style={{ maxWidth: '150px' }}></img>
+            <img src={user ? user.photoURL : profileIcon} style={{ maxWidth: '150px' }}></img>
         </Row>
     );
 }
